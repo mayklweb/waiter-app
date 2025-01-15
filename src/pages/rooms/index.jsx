@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { getTable } from "../../api/apiServices";
+import { getRooms } from "../../api/apiServices";
 import { useQuery } from "react-query";
 
 function Rooms() {
@@ -11,7 +11,7 @@ function Rooms() {
     isLoading,
   } = useQuery({
     queryKey: ["Rooms"],
-    queryFn: getTable,
+    queryFn: getRooms,
   });
   return (
     <section className="rooms">

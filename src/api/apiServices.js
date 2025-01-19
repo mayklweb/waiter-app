@@ -1,5 +1,15 @@
 import { Axios } from "./api";
 
+export const getProducts = async () => {
+  const { data } = await Axios.get("/products/");
+  return data.results;
+};
+
+export const getCategories = async () => {
+  const { data } = await Axios.get("/Category");
+  return data.results;
+};
+
 export const getRooms = async () => {
   const { data } = await Axios.get("/table_cat/");
   return data.results;

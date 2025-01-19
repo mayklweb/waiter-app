@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom'
 function Home() {
   return (
     <div>
-      <Link to={'/rooms'}>ROOM</Link>
+      <div className="container">
+      <Link to={'/room'}>ROOM</Link>
+      
+      </div>
     </div>
   )
 }

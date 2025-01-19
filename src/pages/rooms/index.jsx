@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { getRooms } from "../../api/apiServices";
 import { useQuery } from "react-query";
+import { getRooms } from "../../api/apiServices";
 
 function Rooms() {
   const {
@@ -13,17 +13,33 @@ function Rooms() {
     queryKey: ["Rooms"],
     queryFn: getRooms,
   });
+
+  if (isLoading) {
+    return <div>Loading rooms...</div>;
+  }
+
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (!rooms?.length) {
+    return <div>No rooms available</div>;
+  }
+
   return (
     <section className="rooms">
       <div className="container">
-        <Link to={"/"}>home</Link>
+        <Link to="/">Home</Link>
         <div className="room-row">
-          {rooms?.map((room, i) => (
-            <Link to={`/rooms/${room.name}/table`} className="room">
+          {rooms.map((room) => (
+            <Link
+              key={room.id}
+              to={`/room/${room.id}/table`}
+              className="room"
+            >
               {room.name}
             </Link>
           ))}
-
         </div>
       </div>
     </section>

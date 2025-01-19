@@ -13,19 +13,19 @@ export const routes = [
   {
     id: 2,
     name: "VIP Кабина ",
-    path: "/rooms",
+    path: "/room",
     component: <Rooms />,
   },
   {
     id: 3,
     name: "Общий зал",
-    path: "/rooms/:id/table",
+    path: "/room/:roomId/table",
     component: <Table />,
   },
   {
     id: 3,
     name: "Общий зал",
-    path: "/rooms/:id/table/:id",
+    path: "/room/:roomId/table/:tableId/menu",
     component: <Menu />,
   },
 ];

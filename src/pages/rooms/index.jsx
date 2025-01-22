@@ -14,6 +14,7 @@ function Rooms() {
     queryFn: getRooms,
   });
 
+
   if (isLoading) {
     return <div>Loading rooms...</div>;
   }

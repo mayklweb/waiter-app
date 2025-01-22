@@ -30,7 +30,7 @@ function Rooms() {
   return (
     <section className="rooms">
       <div className="container">
-        <Link to="/">Home</Link>
+        <Link to="/">Asosy</Link>
         <div className="room-row">
           {rooms.map((room) => (
             <Link

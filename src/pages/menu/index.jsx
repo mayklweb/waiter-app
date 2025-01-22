@@ -10,7 +10,7 @@ function Menu() {
   return (
     <section className="menu">
       <div className="container">
-        <Link to={"/"}>Home</Link> / <Link to={"/room"}>VIP kabina </Link> / <Link to={'/room/1/table'}> 1</Link> / Menu
+        <Link to={"/"}>Asosy</Link> / <Link to={"/room"}> VIP kabina </Link> / <Link to={'/room/1/table'}> 1-Кабина </Link> / Menu
       </div>
       <ProductsList />
       <Footer />

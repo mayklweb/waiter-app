@@ -96,6 +96,8 @@ body,
 }
 
 .room-row {
+  margin-top: 20px;
+
   display: grid;
   grid-template-columns: repeat(2, 2fr);
   grid-gap: 12px;
@@ -131,6 +133,10 @@ body,
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.menu{
+  margin-top: 12px;
 }
 
 .circle {
@@ -186,7 +192,7 @@ body,
 
 /* Filter Styles */
 .c {
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .f-loading {
@@ -225,7 +231,7 @@ body,
 
 /* Product List Styles */
 .pl-r {
-  margin-top: 10px;
+  margin-top: 12px;
   padding-bottom: 80px;
   /* display: grid;
   grid-template-columns: repeat(1, 1fr);

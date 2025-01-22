@@ -24,7 +24,7 @@ function Table() {
   return (
     <section className="tables">
       <div className="container">
-        <Link to={"/room"}>Home</Link> / <Link to={"/room"}> Room </Link> / Table
+        <Link to={"/room"}>Asosy</Link> / <Link to={"/room"}> Room </Link> / Table
         <div className="table-row">
           {tablesByCategory?.map((table, i) => (
             <Link

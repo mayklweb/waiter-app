@@ -2,17 +2,19 @@ import React from "react";
 import Filter from "./components/Filter";
 import ProductsList from "./components/ProductsList";
 import Footer from "./components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function Menu() {
+  const location = useParams()
+  console.log(location);
   return (
-    <div className="menu">
+    <section className="menu">
       <div className="container">
-        <Link to={"/"}>home</Link> / <Link to={"/rooms"}> ROOM </Link> <Link to={'/rooms/1/table'}></Link>
+        <Link to={"/"}>Home</Link> / <Link to={"/room"}>VIP kabina </Link> / <Link to={'/room/1/table'}> 1</Link> / Menu
       </div>
       <ProductsList />
       <Footer />
-    </div>
+    </section>
   );
 }
 

@@ -6,7 +6,7 @@ export const getProducts = async () => {
 };
 
 export const getCategories = async () => {
-  const { data } = await Axios.get("/Category");
+  const { data } = await Axios.get("/сategory/");
   return data.results;
 };
 

@@ -1,22 +1,51 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import { useQuery } from "react-query";
+import { getCategories } from "../../../api/apiServices";
 
-function Filter() {
+function Filter({ onFilter }) {
+  const [activeCategory, setActiveCategory] = useState("");
+
+  const { data: categories, isError, error, isLoading } = useQuery({
+    queryKey: ["categories"],
+    queryFn: getCategories,
+  });
+
+  const handleFilterByCategory = (categoryId) => {
+    setActiveCategory(categoryId);
+    onFilter(categoryId); 
+  };
+
+  if (isLoading) return "Loading..."
+
+  if (isError) {
+    console.error(error?.message);
+    return <div>Error loading categories.</div>;
+  }
+
   return (
-    <div className='c'>
+    <div className="c">
       <div className="container">
         <div className="c-r">
-          <button className="c-btn active"> All </button>
-          <button className="c-btn"> Gamburg </button>
-          <button className="c-btn"> Shashlik </button>
-          <button className="c-btn"> Fast Food </button>
-          <button className="c-btn"> Ichimlik </button>
-          <button className="c-btn"> Desert </button>
-          <button className="c-btn"> Bar </button>
           
+        <div
+          onClick={() => handleFilterByCategory("")}
+          className={`c-btn ${!activeCategory && "active"}`}
+        >
+          Все
+        </div>
+        {categories?.map(({ name, id }) => (
+          <div
+            key={id}
+            onClick={() => handleFilterByCategory(id)}
+            className={`c-btn ${activeCategory === id && "active"}`}
+          >
+            {name}
+          </div>
+        ))}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Filter
+export default Filter;

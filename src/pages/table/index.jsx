@@ -22,9 +22,9 @@ function Table() {
   );
 
   return (
-    <div className="tables">
+    <section className="tables">
       <div className="container">
-        <Link to={"/"}>home</Link> / <Link to={"/rooms"}>ROOM </Link>
+        <Link to={"/room"}>Home</Link> / <Link to={"/room"}> Room </Link> / Table
         <div className="table-row">
           {tablesByCategory?.map((table, i) => (
             <Link
@@ -41,7 +41,7 @@ function Table() {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

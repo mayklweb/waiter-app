@@ -56,7 +56,7 @@ const useCartStore = create()(
       },
     }),
     {
-      name: "cart",
+      name: "waiter-cart",
       storage: {
         getItem: (name) => {
           const str = localStorage.getItem(name);

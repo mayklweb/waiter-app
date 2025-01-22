@@ -5,7 +5,6 @@ function Home() {
   return (
     <div>
       <div className="container">
-      <Link to={'/room'}>ROOM</Link>
       
       </div>
     </div>

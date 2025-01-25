@@ -18,18 +18,20 @@ function Table() {
   });
 
   const tablesByCategory = allTable?.filter(
-    (table) => table.category === roomId
+    (table) => table.category.id === roomId
   );
+
 
   return (
     <section className="tables">
       <div className="container">
-        <Link to={"/room"}>Asosy</Link> / <Link to={"/room"}> Room </Link> / Table
+        <Link to={"/room"}>Asosy</Link> / <Link to={"/room"}> Room </Link> /
+        Table
         <div className="table-row">
           {tablesByCategory?.map((table, i) => (
             <Link
               key={i}
-              to={`/room/${table.category}/table/${table.id}/menu`}
+              to={`/room/${table.category.id}/table/${table.number}/menu`}
               className="table"
             >
               <div className="circle top-left"></div>

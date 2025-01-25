@@ -1,19 +1,10 @@
-import { Route, Routes } from "react-router-dom";
-import { routes } from "./utils/routes";
-import Header from "./components/Header";
+import useIsAuth from "./context/useIsAuth";
+import LoginPage from "./pages/login";
+import AppLayout from "./pages/appLayout";
 
 function App() {
-
-  return (
-    <>
-    <Header/>
-      <Routes>
-        {routes.map((route) => (
-          <Route key={route.id} path={route.path} element={route.component} />
-        ))}
-      </Routes>
-    </>
-  );
+  const isAuth = useIsAuth();
+  return isAuth ? <AppLayout /> : <LoginPage />;
 }
 
 export default App;

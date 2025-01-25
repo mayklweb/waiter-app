@@ -1,45 +1,33 @@
-import React, { useEffect } from "react";
 import { useMutation } from "react-query";
 import { Axios } from "../../../api/api";
 import useCartStore from "../../../store";
+import { useParams } from "react-router-dom";
 
 function Footer() {
   const { getTotalPrice, cart, clearCart } = useCartStore();
   const totalPrice = getTotalPrice();
-  // const tg = window.Telegram?.WebApp;
-  // const userJSON = tg.initDataUnsafe?.user;
-  // const user = JSON.stringify(userJSON);
-
-  // useEffect(() => {
-  //   if (typeof Telegram !== "undefined" && Telegram.WebApp) {
-  //     Telegram.WebApp.ready();
-  //   } else {
-  //     console.error("Telegram WebApp is not available.");
-  //   }
-  // }, []);
+  const loaction = useParams();
+  const roomId = +loaction.roomId;
+  const tableId = +loaction.tableId;
 
   const postOrder = useMutation(async (orderData) => {
-    const response = await Axios.post("/save-order/", orderData);
+    const response = await Axios.post("/order/", orderData);
     return response.data;
   });
 
   const handleSubmit = () => {
-   
     const orderData = [
       {
-        tg_ID: userJSON.id,
+        user: "GEY",
         products: [...cart],
-        price: totalPrice,
+        room_Id: roomId,
+        table_Id: tableId,
       },
     ];
 
     postOrder.mutate(orderData, {
-      onSuccess: (data) => {
-        if (Telegram?.WebApp) {
-          console.log("Order successful:", data);
-          Telegram.WebApp.close();
-          clearCart();
-        }
+      onSuccess: () => {
+        clearCart();
       },
       onError: (error) => {
         console.error("Order failed:", error);
@@ -51,9 +39,12 @@ function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="footer-r">
-          {/* <p className="order-price">{`${totalPrice.toLocaleString()} so'm`}</p> */}
-          <button onClick={handleSubmit} className="order-btn">
-          {`${totalPrice.toLocaleString()} so'm`}
+          <button
+            disabled={!cart.length}
+            onClick={handleSubmit}
+            className="order-btn"
+          >
+            {`${totalPrice.toLocaleString()} so'm`}
           </button>
         </div>
       </div>

@@ -5,8 +5,6 @@ import Footer from "./components/Footer";
 import { Link, useParams } from "react-router-dom";
 
 function Menu() {
-  const location = useParams()
-  console.log(location);
   return (
     <section className="menu">
       <div className="container">

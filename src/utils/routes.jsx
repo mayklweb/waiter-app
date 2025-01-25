@@ -12,7 +12,7 @@ export const routes = [
   },
   {
     id: 2,
-    name: "VIP Кабина ",
+    name: "VIP Кабина",
     path: "/room",
     component: <Rooms />,
   },

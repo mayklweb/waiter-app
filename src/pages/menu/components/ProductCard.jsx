@@ -17,7 +17,7 @@ function ProductCard({ product }) {
           <span>{product.name}</span>
         </p>
         <p className="p-p">
-          <span>{product.price} so'm</span>
+          <span>{product.price?.toLocaleString()} so'm</span>
         </p>
         {!foundedItem ? (
           <button onClick={() => addToCart(product)} className="p-btn">

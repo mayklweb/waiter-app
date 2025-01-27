@@ -18,7 +18,7 @@ function Footer() {
   const handleSubmit = () => {
     const orderData = [
       {
-        user: "GEY",
+        user: "admin",
         products: [...cart],
         room_Id: roomId,
         table_Id: tableId,

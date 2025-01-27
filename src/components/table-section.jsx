@@ -21,6 +21,7 @@ export default function TableSelection() {
       <div className="grid grid-cols-2 gap-4">
         {tables.map((table) => (
           <button
+          disabled={!table.base}
             key={table}
             onClick={() => onSelect(table)}
             className="text-lg py-3"

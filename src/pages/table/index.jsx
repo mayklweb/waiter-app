@@ -31,7 +31,7 @@ function Table() {
           {tablesByCategory?.map((table, i) => (
             <Link
               key={i}
-              to={`/room/${table.category.id}/table/${table.number}/menu`}
+              to={`/room/${table.category.id}/table/${table.number}/checkout`}
               className="table"
             >
               <div className="circle top-left"></div>

@@ -54,6 +54,7 @@ const useCartStore = create()(
         const { cart } = get();
         return cart.reduce((total, item) => total + item.price * item.qty, 0);
       },
+
     }),
     {
       name: "waiter-cart",

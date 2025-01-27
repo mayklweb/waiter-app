@@ -11,7 +11,7 @@ function Footer() {
   const tableId = +loaction.tableId;
 
   const postOrder = useMutation(async (orderData) => {
-    const response = await Axios.post("/order/", orderData);
+    const response = await Axios.post("/save-order1/", orderData);
     return response.data;
   });
 

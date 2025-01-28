@@ -11,7 +11,7 @@ function Footer() {
   const tableId = +loaction.tableId;
 
   const postOrder = useMutation(async (orderData) => {
-    const response = await Axios.post("/save-order1/", orderData);
+    const response = await Axios.post("/ordercheck/pay_orders/", orderData);
     return response.data;
   });
 
@@ -22,6 +22,7 @@ function Footer() {
         products: [...cart],
         room_Id: roomId,
         table_Id: tableId,
+        busy: true
       },
     ];
 

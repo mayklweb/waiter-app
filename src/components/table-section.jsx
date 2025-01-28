@@ -16,7 +16,7 @@ export default function TableSelection() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="">
       <h2 className="text-2xl font-semibold mb-4">Select a Table:</h2>
       <div className="grid grid-cols-2 gap-4">
         {tables.map((table) => (

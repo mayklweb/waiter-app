@@ -21,7 +21,6 @@ function Table() {
     (table) => table.category.id === roomId
   );
 
-
   return (
     <section className="tables">
       <div className="container">
@@ -38,7 +37,7 @@ function Table() {
               <div className="circle top-right"></div>
               <div className="circle bottom-left"></div>
               <div className="circle bottom-right"></div>
-              <div className="box">{table.name}</div>
+              <div className={`box ${table.basy ? "busy" :''}`}>{table.name}</div>
             </Link>
           ))}
         </div>

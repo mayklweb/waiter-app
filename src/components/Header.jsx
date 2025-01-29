@@ -1,19 +1,21 @@
+import { LogOut } from 'lucide-react'
 import React from 'react'
 
 function Header() {
 
-  function handleLogout( ){
+  function handleLogout() {
     localStorage.removeItem('token')
   }
+
   return (
     <header>
-      <div className="container">
+      <div className="cmontainer">
         <div className="header-row">
           <div className="header-logo">
             <img src="/logo.png" alt="" />
           </div>
-          <button onClick={() => handleLogout()} className="header-btn">
-            Log out
+          <button onClick={handleLogout} className="header-btn">
+            <LogOut />
           </button>
         </div>
       </div>

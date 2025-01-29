@@ -19,3 +19,9 @@ export const getTable = async () => {
   const { data } = await Axios.get("/table/");
   return data;
 };
+
+
+export const getPaymet = async () => {
+  const { data } = await Axios.get("/ordercheck/");
+  return data;
+};

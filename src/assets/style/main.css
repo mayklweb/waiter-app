@@ -630,7 +630,8 @@ body,
 }
 
 .order-item {
-  display: flex;
+  display: flex;  
+  flex-direction: column;
   justify-content: space-between;
   padding: 8px 0;
   border-bottom: 1px solid #f0f0f0;

@@ -1,7 +1,9 @@
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { Axios } from "../../../api/api";
 import useCartStore from "../../../store";
 import { useParams } from "react-router-dom";
+import { getPaymet } from "../../../api/apiServices";
+import { useState } from "react";
 
 function Footer() {
   const { getTotalPrice, cart, clearCart } = useCartStore();
@@ -11,9 +13,11 @@ function Footer() {
   const tableId = +loaction.tableId;
 
   const postOrder = useMutation(async (orderData) => {
-    const response = await Axios.post("/ordercheck/pay_orders/", orderData);
+    const response = await Axios.post("/save-order1/", orderData);
     return response.data;
   });
+
+
 
   const handleSubmit = () => {
     const orderData = [

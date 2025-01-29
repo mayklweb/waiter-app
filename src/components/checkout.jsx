@@ -1,43 +1,72 @@
-import { useRef } from "react";
-import { jsPDF } from 'jspdf';
+import { useRef, useState } from "react";
+import { jsPDF } from "jspdf";
 import useCartStore from "../store";
 import html2canvas from "html2canvas";
+import { useParams } from "react-router-dom";
+import { useMutation, useQuery } from "react-query";
+import { getPaymet } from "../api/apiServices";
 
 export default function CheckOut() {
   const { cart, getTotalPrice } = useCartStore();
 
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const totalPrice = getTotalPrice();
+  const loaction = useParams();
+  const roomId = +loaction.roomId;
+  const tableId = +loaction.tableId;
 
-  // Fetch data from an API
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch("https://jsonplaceholder.typicode.com/users");
-      const result = await response.json();
-      setData(result);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const {
+    data: pay,
+    isError,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ["payment"],
+    queryFn: getPaymet,
+  });
+
+  const checkout = pay?.filter((item) => item.table === tableId);
+  console.log(checkout);
 
   const contentRef = useRef();
 
   const generatePdf = () => {
     const doc = new jsPDF();
-
-    doc.text("API Data PDF", 10, 10); // Title
-
-    data.forEach((user, index) => {
-      doc.text(`${index + 1}. ${user.name} (${user.email})`, 10, 20 + index * 10);
-    });
-
+  
+    doc.setFontSize(16);
+    doc.text("Order Details", 10, 10); // Title
+    let y = 20;
+  
+    if (checkout?.length > 0) {
+      checkout.forEach((item, index) => {
+        doc.setFontSize(12);
+        doc.text(`Table: ${tableId}, Order #${index + 1}`, 10, y);
+        y += 10;
+  
+        item.products.forEach((product, i) => {
+          doc.text(
+            `${i + 1}.Name: ${product.name}, Quantity: ${item.qty}, Price: ${product.price} so'm`,
+            10,
+            y
+          );
+          y += 10;
+        });
+  
+        y += 5; // Add some space between orders
+      });
+  
+      doc.text(
+        `Total Price: ${getTotalPrice()?.toLocaleString()} so'm`,
+        10,
+        y + 10
+      );
+    } else {
+      doc.text("No orders available for this table.", 10, y);
+    }
+  
     doc.save("api-data.pdf");
   };
-
-
+  
 
   return (
     <div className="container">
@@ -45,26 +74,34 @@ export default function CheckOut() {
         <div className="card-header">
           <h2 className="card-title">Order Details</h2>
         </div>
-        <div  className="card-content">
+        <div className="card-content">
           {cart?.length === 0 ? (
             <p className="no-orders">No orders for this table.</p>
           ) : (
             <>
               <ul className="order-list">
-                {cart?.map((item, index) => (
+                {checkout?.map((item, index) => (
                   <li key={index} className="order-item">
-                    <span>
-                      {item.name} x{item.qty}
-                    </span>
-                    <span>{item.price.toLocaleString()} so'm</span>
+                    {item.products.map((product, i) => (
+                      <span key={i}>
+                        <span>
+                          {product.name} x{item.qty}
+                        </span>
+                        <span>{product.price} so'm</span>
+                      </span>
+                    ))}
                   </li>
                 ))}
               </ul>
-              <div className="total">{getTotalPrice()?.toLocaleString()} so'm</div>
+              <div className="total">
+                {getTotalPrice()?.toLocaleString()} so'm
+              </div>
             </>
           )}
 
-          <button onClick={generatePdf} className="checkout-btn">CHECK</button>
+          <button onClick={generatePdf} className="checkout-btn">
+            CHECK
+          </button>
         </div>
       </div>
     </div>

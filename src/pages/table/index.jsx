@@ -17,6 +17,7 @@ function Table() {
     queryFn: getTable,
   });
 
+
   const tablesByCategory = allTable?.filter(
     (table) => table.category.id === roomId
   );

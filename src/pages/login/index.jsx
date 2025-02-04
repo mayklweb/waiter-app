@@ -15,13 +15,14 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
 
   const onFinish = (e) => {
-    console.log(username, password);
-
     e.preventDefault();
     setLoading(true);
     Axios.post("/login/", { password: password, username: username })
       .then((res) => {
         if (res.data.token) {
+          const userStatus = JSON.stringify(res.data.user.status);
+          localStorage.setItem("user-status", userStatus);
+          console.log(res);
           addToken(res.data.token);
           navigate("/");
         }

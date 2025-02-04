@@ -657,3 +657,57 @@ body,
   color: var(--white);
   background-color: var(--primary);
 }
+
+.receipt {
+  width: 100%;
+  background: white;
+  margin-top: 40px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+.receipt h1 {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.receipt .details {
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+.receipt .items {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+.receipt .items th,
+.receipt .items td {
+  text-align: left;
+  padding: 8px;
+  font-size: 14px;
+}
+.receipt .items th {
+  border-bottom: 2px solid #ddd;
+}
+.receipt .summary {
+  font-size: 14px;
+  padding: 20px 10px;
+}
+.receipt .summary div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.receipt .summary div.total {
+  font-weight: bold;
+  font-size: 16px;
+}
+.receipt .footer {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 20px;
+}
+.line{
+border-bottom: 2px solid #ddd;
+}

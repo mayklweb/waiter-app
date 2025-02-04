@@ -1,5 +1,6 @@
 import CheckOut from "../components/checkout";
 import Home from "../pages/home";
+import LoginPage from "../pages/login";
 import Menu from "../pages/menu";
 import Rooms from "../pages/rooms";
 import Table from "../pages/table";
@@ -29,5 +30,10 @@ export const routes = [
     id: 5,
     path: "/room/:roomId/table/:tableId/checkout",
     component: <CheckOut />,
+  },
+  {
+    id: 6,
+    path: "/login",
+    component: <LoginPage/>
   },
 ];

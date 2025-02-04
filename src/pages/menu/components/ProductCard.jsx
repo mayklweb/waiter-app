@@ -4,7 +4,7 @@ import useCartStore from "../../../store";
 
 function ProductCard({ product }) {
   const { addToCart, cart, inc, dec } = useCartStore();
-
+console.log(product);
   const foundedItem = cart.find((item) => item.id === product.id);
 
   return (

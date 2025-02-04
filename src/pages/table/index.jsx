@@ -6,6 +6,9 @@ import { getTable } from "../../api/apiServices";
 function Table() {
   const location = useParams();
   const roomId = +location.roomId;
+  const userStatusJSON = localStorage.getItem("user-status");
+  const userStatus = JSON.parse(userStatusJSON)
+
 
   const {
     data: allTable,
@@ -16,7 +19,6 @@ function Table() {
     queryKey: ["Table"],
     queryFn: getTable,
   });
-
 
   const tablesByCategory = allTable?.filter(
     (table) => table.category.id === roomId
@@ -31,14 +33,18 @@ function Table() {
           {tablesByCategory?.map((table, i) => (
             <Link
               key={i}
-              to={`/room/${table.category.id}/table/${table.number}/checkout`}
+              to={`/room/${table.category.id}/table/${table.number}/${
+                userStatus === "cashier" ? "checkout" : "menu"
+              }`}
               className="table"
             >
               <div className="circle top-left"></div>
               <div className="circle top-right"></div>
               <div className="circle bottom-left"></div>
               <div className="circle bottom-right"></div>
-              <div className={`box ${table.basy ? "busy" :''}`}>{table.name}</div>
+              <div className={`box ${table.basy ? "busy" : ""}`}>
+                {table.name}
+              </div>
             </Link>
           ))}
         </div>

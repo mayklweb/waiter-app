@@ -5,11 +5,13 @@ function Header() {
 
   function handleLogout() {
     localStorage.removeItem('token')
+    localStorage.removeItem('user-status')
+    window.location.reload()
   }
 
   return (
     <header>
-      <div className="cmontainer">
+      <div className="container">
         <div className="header-row">
           <div className="header-logo">
             <img src="/logo.png" alt="" />
